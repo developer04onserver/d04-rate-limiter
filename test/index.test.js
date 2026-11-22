@@ -1,0 +1,3 @@
+import test from "node:test"; import assert from "node:assert/strict"; import { FixedWindowLimiter, TokenBucketLimiter } from "../src/index.js";
+test("fixed window enforces quota and resets",()=>{let now=0;const l=new FixedWindowLimiter({limit:2,windowMs:1000,now:()=>now});assert.equal(l.consume("a").allowed,true);assert.equal(l.consume("a").allowed,true);assert.equal(l.consume("a").allowed,false);now=1001;assert.equal(l.consume("a").allowed,true);});
+test("token bucket refills over time",()=>{let now=0;const l=new TokenBucketLimiter({capacity:2,refillPerSecond:1,now:()=>now});assert.equal(l.consume("a").allowed,true);assert.equal(l.consume("a").allowed,true);assert.equal(l.consume("a").allowed,false);now=1000;assert.equal(l.consume("a").allowed,true);});
