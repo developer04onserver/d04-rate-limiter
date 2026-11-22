@@ -1,0 +1,13 @@
+{
+  "name": "d04-rate-limiter",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "In-memory fixed-window and token-bucket rate limiting primitives.",
+  "exports": "./src/index.js",
+  "scripts": {
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
